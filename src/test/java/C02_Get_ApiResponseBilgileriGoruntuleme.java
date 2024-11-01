@@ -1,7 +1,8 @@
 
 import io.restassured.response.Response;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 
 import static io.restassured.RestAssured.given;
 
