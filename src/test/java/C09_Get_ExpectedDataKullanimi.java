@@ -1,6 +1,8 @@
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.json.JSONObject;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.lang.module.ResolutionException;
@@ -41,11 +43,36 @@ public class C09_Get_ExpectedDataKullanimi {
                                                 .when()
                                                 .get(endpoint);
 
+        JsonPath actualRespJsonpath = actualResponse.jsonPath();
+
 
         // 4.adim : istenen assertion'lari yapin
         // donen actual response body’sinin
         // asagida verilen expected response body ile ayni oldugunu test ediniz
+        // artik testlerimizi yavas yavas dinamik hale getirmek istiyoruz
+        // expectedResponseJson   <==> actualResponse
+        //   JsonOBJECT                  Response / Jsonpath'e cast ettik
 
+        /*
+            expectedResponse olarak hazirladigimiz objenin data turu JsonOBJECT
+            expectedResponseJson.get("userId")  ==> 3
+            expectedResponseJson.get("id") ==> 22
+            expectedResponseJson.get("title") ==> "dolor...."
+
+            actualResponse'in data turu ise Response
+            ve Response uzerinden bilgi almak mumkun olmayabilir
+            bunun yerine
+            actualResponse'i kolay bilgi alabilecegimiz
+            Jsonpath objesine cast edecegiz
+
+            actualRespJsonpath.getInt("userId") ==> 3
+            actualRespJsonpath.getInt("id") ==> 22
+            actualRespJsonpath.getString("title") ==> "dolor...
+         */
+
+        Assertions.assertEquals(expectedResponseJson.get("userId"),actualRespJsonpath.getInt("userId"));
+        Assertions.assertEquals(expectedResponseJson.get("id"),actualRespJsonpath.getInt("id"));
+        Assertions.assertEquals(expectedResponseJson.get("title"),actualRespJsonpath.getString("title"));
 
 
 
