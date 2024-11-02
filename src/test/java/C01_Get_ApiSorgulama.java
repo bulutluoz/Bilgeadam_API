@@ -13,7 +13,7 @@ public class C01_Get_ApiSorgulama {
 
         // 1.adim : end point'i belirle ve eger gerekli ise request body olustur
         // 2.adim : eger gorevde varsa expected response body olustur
-        // 3.adim : request'i yollayip, donen response'i actualData olarak kaydet
+        // 3.adim : request'i yollayip, donen response'i actualResponse olarak kaydet
         // 4.adim : istenen assertion'lari yapin
 
 
