@@ -1,3 +1,5 @@
+package Tests;
+
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -108,8 +110,15 @@ public class C10_Post_ExpectedResponseIleTest {
         );
 
 
+        Assertions.assertEquals(
+                expectedResponseJson.getJSONObject("booking").getJSONObject("bookingdates").getString("checkin"),
+                actualRespJsonpath.getString("booking.bookingdates.checkin")
+        );
 
-
+        Assertions.assertEquals(
+                expectedResponseJson.getJSONObject("booking").getJSONObject("bookingdates").getString("checkout"),
+                actualRespJsonpath.getString("booking.bookingdates.checkout")
+        );
 
 
 
